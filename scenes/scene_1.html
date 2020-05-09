@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	</title>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap" rel="stylesheet">
+</head>
+
+<style type="text/css">
+	.interactionContainer
+	{
+		background-color: rgba(255,255,255,0.7);
+		width: 98vw;
+		position: fixed;
+		margin-left: 0vw;
+		margin-right: 4vw;
+		padding-top: 15px;
+  		bottom: 0;
+  		margin-bottom: 10px;
+  		height: 200px;
+		border-radius: 8px;
+	}
+
+	#dialogue
+	{
+		padding: 20px;
+		margin-bottom: -50px;
+		font-size: 30px;
+		font-family: 'DM Mono', sans-serif;
+	}
+
+	#theBody
+	{
+		background-color: #000;
+		background-image: url(../resources/outside.png);
+		background-repeat: no-repeat;
+		background-size: 100vw;
+	}
+</style>
+<body id="theBody">
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+	<script type="text/javascript">
+		var breeze = new Audio();
+		breeze.src = "../resources/breeze.mp3";
+		var talking = new Audio();
+		talking.src = "../resources/talking.mp3";
+		var chatter = new Audio();
+		chatter.src = "../resources/chatter.mp3";
+
+		var ringing = new Audio();
+		ringing.src = "../resources/ringing.mp3";
+
+		var suspense = new Audio();
+		suspense.src = "../resources/intense.mp3";
+
+		var russia = new Audio();
+		russia.src = "../resources/russia.mp3";
+		russia.volume = 0.03;
+
+		var kalinka = new Audio();
+		kalinka.src = "../resources/kalinka.mp3";
+		kalinka.volume = 0.3;
+
+		var typed;
+
+		var options = {
+		  strings: ["", "It's a nice sunny afternoon, with a light breeze. You take a moment to appreciate the weather."],
+		  typeSpeed: 20
+		};
+
+		var dialogueIteration = 0;
+
+		function sleepFor( sleepDuration ){
+		    var now = new Date().getTime();
+		    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+		}
+		function executeAsync(func) {
+		    setTimeout(func, 0);
+		}
+		function lerp(a, b, f)
+		{
+		    return a + f * (b - a);
+		}
+		function bruh() {
+
+
+			if(document.getElementById('dialogue').innerHTML == "Click to start playback.")
+			{
+				breeze.play();
+
+				chatter.volume = 0.1;
+
+				options = {
+				  strings: ["", "It's a nice sunny afternoon, with a light breeze. You take a moment to appreciate the weather."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 1)
+			{
+				document.getElementById('dialogue').innerHTML = "<i>Click to go inside</i>";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 2)
+			{
+				chatter.play();
+
+				breeze.pause();
+				breeze.currentTime = 0;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus.png)";
+				document.getElementById('dialogue').innerHTML = "<i>You think to yourself, the time has come. You must confront him.</i>";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 3)
+			{
+				talking.play();
+
+				options = {
+				  strings: ["Marcus:", "Marcus: Oh, hi! How good to see you, long time no see."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 4)
+			{
+
+				//talking2.play();
+
+				options = {
+				  strings: ["You:", "You: Long time no see Marcus..."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 5)
+			{
+				talking.play();
+
+				var options = {
+				  strings: ["Marcus:", "Marcus: Hey man, I'm sorry about leaving, I just.."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 6)
+			{
+				talking.play();
+
+				var options = {
+				  strings: ["Marcus:", "Marcus: The salary here is much higher and-"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 7)
+			{
+				var options = {
+				  strings: ["You:", "You: Stop talking."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 8)
+			{
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_sad.png)";
+
+				var options = {
+				  strings: ["Marcus:", "Marcus: Why are you so angry man I've done nothing!"],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 9)
+			{
+				var options = {
+				  strings: ["You:", "You: You know damn well what you did."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 10)
+			{
+				var options = {
+				  strings: ["You:", "You: You betrayed us."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 11)
+			{
+				var options = {
+				  strings: ["You:", "You: Jöns wouldn't be proud of this."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 12)
+			{
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_angry.png)";
+
+				var options = {
+				  strings: ["Marcus:", "Marcus: Are you just here to harass me!?"],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 13)
+			{
+				talking.play();
+				var options = {
+				  strings: ["Marcus:", "Marcus: I don't even know what you're talking about, I just changed jobs because of the pay."],
+				  typeSpeed: 14
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 14)
+			{
+				var options = {
+				  strings: ["You:", "You: Do you think we don't know?"],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 15)
+			{
+				suspense.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_nervous.png)";
+
+				talking.play();
+				var options = {
+				  strings: ["Marcus:", "Marcus: W-w-what, know what..?"],
+				  typeSpeed: 50
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 16)
+			{
+				var options = {
+				  strings: ["You:", "You: We know your secret Marcus. We know the actual reason as to why you switched..."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 17)
+			{
+				var options = {
+				  strings: ["You:", "You: We know you've been assisting the smuggling of alcohol into schools, so teenagers learn to grow up drinking. Thus, increasing demand."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 18)
+			{
+				var options = {
+				  strings: ["You:", "You: We know that you're corrupt Marcus..."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 19)
+			{
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_angry.png)";
+
+				var options = {
+				  strings: ["Marcus:", "Marcus: What are you talking about!!! You're talking non-sense, theres no such thing."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 20)
+			{
+				var options = {
+				  strings: ["You:", "You: I'll be back."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 21)
+			{
+				suspense.pause();
+				chatter.pause();
+				breeze.pause();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/black.png)";
+				ringing.play();
+
+				var options = {
+				  strings: ["", ""],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 22)
+			{
+				kalinka.play();
+
+
+				executeAsync(function() {
+						sleepFor(7000);
+
+						var options = {
+						  strings: ["Exec:", "Exec: Hello this is Dimitriov System<i>GULAGET</i> in Russia. We sell best kavas in contry and ghwole ghwide gwhorld."],
+						  typeSpeed: 20
+						};
+
+						typed = new Typed('#dialogue', options);
+						document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+						dialogueIteration++;
+					}
+				);
+			}
+			else if(dialogueIteration == 23)
+			{
+				var options = {
+				  strings: ["Marcus:", "Marcus: Priviet boss."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 24)
+			{
+				while (kalinka.volume > 0.03)
+				{
+					kalinka.volume-=0.000005;
+				}
+				var options = {
+				  strings: ["Exec:", "Exec: *cleans throat* Oh.. hi uhmm Marcus..."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 25)
+			{
+				var options = {
+				  strings: ["Exec:", "Exec: Oh Marcus, you are too good to me. How have you been?"],
+				  typeSpeed: 20
+				};
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 26)
+			{
+				var options = {
+				  strings: ["Marcus:", "Marcus: Sir, I have a slight problem..."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 27)
+			{
+				var options = {
+				  strings: ["Exec:", "Exec: Omg Marcus, I told you many times Marcus, no funny business! I am not loaning any more money towards your useless \"Boar Vessel 600-500 BC Etruscan Ceramic\" addiction."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 28)
+			{
+				var options = {
+				  strings: ["Marcus:", "Marcus: No-no it's not that..."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 29)
+			{
+				var options = {
+				  strings: ["Marcus:", "Marcus: Someone has caught on to us boss."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 30)
+			{
+				var options = {
+				  strings: ["Exec:", "Exec: WHAT!?!?", "Exec: WHO!?!?"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 31)
+			{
+				var options = {
+				  strings: ["Marcus:", "Marcus: They are..", "Exec:", "Exec: WHO!?!? WHO!?!? JUST TELL ME MARCUS YOU'RE KILLING ME!!! I SPIT ON THEM *XETFAAH (spit)*"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 32)
+			{
+			}
+			else if(dialogueIteration == 33)
+			{
+				var options = {
+				  strings: ["Marcus: I-", "Exec:", "Exec: Marcus, Marcus listen here... We are greatest comapny in greatest contry. We sell best kavas in whole wide whorld, and you telling me YOU FAILED?"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 34)
+			{
+				var options = {
+				  strings: ["Exec:", "Exec: Now tell me who is it?"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 35)
+			{
+				var options = {
+				  strings: ["Marcus: It's Jönsa sir.", "Exec:", "Exec: AAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Exec: AAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Exec: СУКА бЛЯТЬ (cyka blyat) I knew it! I knew it!" ],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 36)
+			{
+				var options = {
+				  strings: ["Marcus:", "Marcus: Ok w-well what should I do sir?"],
+				  typeSpeed: 10
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 37)
+			{
+				var options = {
+				  strings: ["Exec:", "Exec: Do what you have to do in order to get them to go away."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+		}
+	</script>
+	<div class="interactionContainer" onmousedown="bruh()">
+		<a id="dialogue">Click to start playback.</a>
+	</div>
+</body>
+</html>
