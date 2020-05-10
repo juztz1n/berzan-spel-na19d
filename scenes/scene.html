@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	</title>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap" rel="stylesheet">
+</head>
+
+<style type="text/css">
+	.interactionContainer
+	{
+		background-color: rgba(255,255,255,0.7);
+		width: 98vw;
+		position: fixed;
+		margin-left: 0vw;
+		margin-right: 4vw;
+		padding-top: 15px;
+  		bottom: 0;
+  		margin-bottom: 10px;
+  		height: 200px;
+		border-radius: 8px;
+	}
+
+	#dialogue
+	{
+		padding: 20px;
+		margin-bottom: -50px;
+		font-size: 30px;
+		font-family: 'DM Mono', sans-serif;
+	}
+
+	#theBody
+	{
+		background-color: #000;
+		background-image: url(../resources/outside.png);
+		background-repeat: no-repeat;
+		background-size: 100vw;
+	}
+</style>
+<body id="theBody">
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+	<script type="text/javascript">
+		var breeze = new Audio();
+		breeze.src = "../resources/breeze.mp3";
+		breeze.volume = 0.2;
+
+		var talking = new Audio();
+		talking.src = "../resources/talking.mp3";
+		var chatter = new Audio();
+		chatter.src = "../resources/chatter.mp3";
+
+		var ringing = new Audio();
+		ringing.src = "../resources/ringing.mp3";
+
+		var suspense = new Audio();
+		suspense.src = "../resources/intense.mp3";
+
+		var russia = new Audio();
+		russia.src = "../resources/russia.mp3";
+		russia.volume = 0.03;
+
+		var kalinka = new Audio();
+		kalinka.src = "../resources/kalinka.mp3";
+		kalinka.volume = 0.3;
+
+		var door = new Audio();
+		door.src = "../resources/door.mp3";
+		door.volume = 0.3;
+
+		var thud = new Audio();
+		thud.src = "../resources/thud.mp3";
+
+		var talking2 = new Audio();
+		talking2.src = "../resources/talking2.mp3";
+		talking2.volume = 0.3;
+
+		var typed;
+
+		var dialogueIteration = 0;
+
+		function sleepFor( sleepDuration ){
+		    var now = new Date().getTime();
+		    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+		}
+		function executeAsync(func) {
+		    setTimeout(func, 0);
+		}
+		function lerp(a, b, f)
+		{
+		    return a + f * (b - a);
+		}
+
+		var done = false;
+
+		function bruh() {
+			var options = {
+			  strings: ["", "It's a nice sunny afternoon, with a light breeze. You take a moment to appreciate the weather."],
+			  typeSpeed: 20
+			};
+
+			if(document.getElementById('dialogue').innerHTML == "Click to start playback.")
+			{
+				breeze.play();
+
+				chatter.volume = 0.1;
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["", "It's a nice sunny afternoon, with a light breeze. You take a moment to appreciate the weather."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 1 && (done == true))
+			{
+				document.getElementById('dialogue').innerHTML = "<i>Click to go inside</i>";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 2)
+			{
+				door.play();
+				chatter.play();
+				chatter.volume = 0.015;
+
+				breeze.pause();
+				breeze.currentTime = 0;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus.png)";
+				document.getElementById('dialogue').innerHTML = "<i>You think to yourself, the time has come. You must confront him.</i>";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 3)
+			{
+				talking.play();
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Oh, hi! How good to see you, long time no see."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 4 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: Long time no see Marcus..."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 5 && (done == true))
+			{
+				talking.play();
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Hey man, I'm sorry about leaving, I just.."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 6 && (done == true))
+			{
+				talking.play();
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: The salary here is much higher and-"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 7 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: Stop talking."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 8 && (done == true))
+			{
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_sad.png)";
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Why are you so angry man I've done nothing!"],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 9 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: You know damn well what you did."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 10 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: You betrayed us."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 11 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: Jöns wouldn't be proud of this."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 12 && (done == true))
+			{
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_angry.png)";
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Are you just here to harass me!?"],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 13 && (done == true))
+			{
+				talking.play();
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: I don't even know what you're talking about, I just changed jobs because of the pay."],
+				  typeSpeed: 14
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 14 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: Do you think we don't know?"],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 15 && (done == true))
+			{
+				suspense.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_nervous.png)";
+
+				talking.play();
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: W-w-what, know what..?"],
+				  typeSpeed: 50
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 16 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: We know your secret Marcus. We know the actual reason as to why you switched..."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 17 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: We know you've been assisting the smuggling of alcohol into schools, so teenagers learn to grow up drinking. Thus, increasing demand."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 18 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: We know that you're corrupt Marcus..."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 19 && (done == true))
+			{
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_angry.png)";
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: What are you talking about!!! You're talking non-sense, theres no such thing."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 20 && (done == true))
+			{
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: I'll be back."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 21 && (done == true))
+			{
+				suspense.pause();
+				chatter.pause();
+				breeze.pause();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/black.png)";
+				ringing.play();
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_phone.png)";},
+				  strings: ["Ringing..", "Ringing..."],
+				  typeSpeed: 500
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 22 && (done == true))
+			{
+				kalinka.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+
+					var options = {
+			  		  onComplete: function(self) { done=true; talking2.pause(); },
+					  strings: ["","","","", "Exec:", "Exec: Hello this is Dimitriov System<i>GULAGET</i> in Russia.We sell best kavas in contry and ghwole ghwide gwhorld."],
+					  typeSpeed: 20
+					};
+						typed = new Typed('#dialogue', options);
+						document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+						dialogueIteration++;
+					
+			}
+			else if(dialogueIteration == 23 && (done == true))
+			{
+				talking.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_phone.png)";
+
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Priviet boss."],
+				  typeSpeed: 20
+				};
+
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 24 && (done == true))
+			{
+				while (kalinka.volume > 0.03)
+				{
+					kalinka.volume-=0.000005;
+				}
+
+				talking2.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause();},
+				  strings: ["Exec:", "Exec: *cleans throat* Oh.. hi uhmm Marcus..."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 25 && (done == true))
+			{
+				done =false;
+
+				talking2.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause(); },
+				  strings: ["Exec:", "Exec: Oh Marcus, you are too good to me. How have you been?"],
+				  typeSpeed: 20
+				};
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 26 && (done == true))
+			{
+				talking.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_phone.png)";
+					kalinka.volume=0.01;
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Sir, I have a slight problem..."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 27 && (done == true))
+			{
+				done =false;
+
+				talking2.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause(); },
+				  strings: ["Exec:", "Exec: Omg Marcus, I told you many times Marcus, no funny business! I am not loaning any more money towards your useless \"Boar Vessel 600-500 BC Etruscan Ceramic\" addiction."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 28 && (done == true))
+			{
+				talking.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_phone.png)";
+					kalinka.volume=0.01;
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus: NO WHY WOULD YOU TELL THEM ABOUT THAT!!!","Marcus: NO WHY WOULD YOU TELL THEM ABOUT THAT!!!", "Marcus: EHm ehm i mean, No-no it's not that..."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 29 && (done == true))
+			{
+				talking.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_phone.png)";
+					kalinka.volume=0.01;
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Someone has caught on to us boss."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 30 && (done == true))
+			{
+				done =false;
+				talking2.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause(); },
+				  strings: ["Exec:", "Exec: WHAT!?!?", "Exec: WHO!?!?"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 31 && (done == true))
+			{
+				talking.play();
+				talking2.play();
+				done =false;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause();},
+				  strings: ["Marcus:", "Marcus: They are..", "Exec: WHO!?!? WHO!?!? JUST TELL ME MARCUS YOU'RE KILLING ME!!! I SPIT ON THEM *XETFAAH (spit)*"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 33 && (done == true))
+			{
+				talking2.play();
+				done =false;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause(); },
+				  strings: ["Marcus: I-", "Marcus: I-", "Exec:", "Exec: Marcus, Marcus listen here... We are greatest comapny in greatest contry. We sell best kavas in whole wide whorld, and you telling me YOU FAILED?"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 34 && (done == true))
+			{
+				done =false;
+				talking2.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause(); },
+				  strings: ["Exec:", "Exec: Now tell me who is it?"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 35 && (done == true))
+			{
+				talking.play();
+				talking2.play();
+				done =false;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				options = {
+				  onComplete: function(self) { done=true; talking2.pause(); },
+				  strings: ["Marcus: It's Jönsa sir.","Marcus: It's Jönsa sir.", "Exec: AAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Exec: AAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Exec: СУКА бЛЯТЬ (cyka blyat) I knew it! I knew it!" ],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 36 && (done == true))
+			{
+				talking.play();
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_phone.png)";
+					kalinka.volume=0.01;
+				done =false;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Ok w-well what should I do sir?"],
+				  typeSpeed: 10
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 37 && (done == true))
+			{
+				done =false;
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/systemgulaget.png)";
+					kalinka.volume=0.1;
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Exec:", "Exec: Do what you have to do in order to get them to go away."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 38 && (done == true))
+			{
+				talking.play();
+				done =false;
+				kalinka.volume=0.01;
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_phone.png)";
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Uhm. Understood sir.."],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 39 && (done == true))
+			{
+				thud.play();
+				kalinka.pause();
+
+				var bruh = new Audio();
+				bruh.src = "../resources/bruh.mp3";
+				bruh.play();
+
+				done =false;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/black.png)";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["DAY", "DAY 2"],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 40 && (done == true))
+			{
+				breeze.play();
+
+				done =false;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/outside.png)";
+				document.getElementById('no').innerHTML = "<a href='./end_alt.html'>No</a>";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You come to the school searching for him, go inside? <a href='#'>YES</a> <a href='http://google.com'>NO</a>", "You come to the school searching for him, go inside? YES NO (click the no at the top left)."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 41 && (done == true))
+			{
+				breeze.pause();
+				suspense.play();
+				door.play();
+
+				done =false;
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/stairs.png)";
+				document.getElementById('no').innerHTML = "";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["<i>What? It's empty! Maybe he's hiding in his office.</i>", "<i>What? It's empty! Maybe he's hiding in his office.</i>"],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 42 && (done == true))
+			{
+				done =false;
+
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office.png)";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:","Marcus: I'm sorry kiddo but I have to do this..."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 43 && (done == true))
+			{
+				done =false;
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:","You: No! Marcus, please reconsider! I was just trying to negotiate with you. This is just cruel."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 44 && (done == true))
+			{
+				done =false;
+
+				talking.play();
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: No, It does. I would reconsider but I can't. They're blackmailing me something very dear to my heart."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 45 && (done == true))
+			{
+				done =false;
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: We can maybe help you, what is it that they're holding over you?! Please just dont shoot!"],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 46 && (done == true))
+			{
+				done =false;
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office_e.png)";
+
+				talking.play();
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Well, my \"Boar Vessel 600-500 BC Etruscan Ceramic\" collection."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 47 && (done == true))
+			{
+				done =false;
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: WAIT! OMG YOU HAVE ONE TOO?!?!?!?"],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 48 && (done == true))
+			{
+				done =false;
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office_hehe.png)";
+
+				talking.play();
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Well uhh, yes.."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 49 && (done == true))
+			{
+				done =false;
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office_hehe.png)";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: Ok wait wait wait. We can figure something out."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 50 && (done == true))
+			{
+				done =false;
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office_hehe.png)";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: How about you get to keep half of mine, and you don't shoot."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 51 && (done == true))
+			{
+				done =false;
+
+				suspense.pause();
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office_hehe.png)";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Wait really??"],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 52 && (done == true))
+			{
+				done =false;
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office_hehe.png)";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["You:", "You: Yeah."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 53 && (done == true))
+			{
+				done =false;
+
+				talking.play();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/marcus_office_hehe.png)";
+
+				options = {
+				  onComplete: function(self) { done=true; },
+				  strings: ["Marcus:", "Marcus: Oh ok, well why didn't you just say that then."],
+				  typeSpeed: 30
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				dialogueIteration++;
+			}
+			else if(dialogueIteration == 54 && (done == true))
+			{
+				done =false;
+				breeze.pause();
+				talking.pause();
+				chatter.pause();
+				suspense.pause();
+
+				document.getElementById('theBody').style.backgroundImage = "url(../resources/black.png)";
+
+
+				document.getElementById('dialogue').innerHTML = "";
+
+				options = {
+				  onComplete: function(self) { while (bowie.volume > 0.00001) { bowie.volume-=0.0000005; } 
+  location.replace("./end.html");},
+				  strings: ["", "", "", "", "", "", "", "", "","", "Marcus Linden starring as Marcus Linden", "Marcus Linden starring as Marcus Linden", "You starring as Jönsa", "You starring as Jönsa","You starring as Jönsa", "Graphics Design: me", "Graphics Design: me", "Graphics Design: me", "Game Design: me", "Game Design: me","Game Design: me", "Story Design: me", "Story Design: me","Story Design: me", "\"Programming\": me","\"Programming\": me", "\"Programming\": me", "Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.", "Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","Special Thanks To: me, <br>Filippa (for motivating me to carry on more than 2 minutes), <br>Linus (for help with the story), <br>to my class for being awesome (and the best, duhh) <br>and to you for enduring through this abomination of a game i created in 2 days.","The current song playing is Queen Bitch by David Bowie so don't sue me.", "The current song playing is Queen Bitch by David Bowie so don't sue me.", "The current song playing is Queen Bitch by David Bowie so don't sue me.", "P.S. don't ask me for a version 2.0 because there will never ever be another one...", "P.S. don't ask me for a version 2.0 because there will never ever be another one....", "P.S. don't ask me for a version 2.0 because there will never ever be another one.....", "P.S. don't ask me for a version 2.0 because there will never ever be another one.....", "P.S. don't ask me for a version 2.0 because there will never ever be another one.....", "P.S. don't ask me for a version 2.0 because there will never ever be another one.....", "P.S. don't ask me for a version 2.0 because there will never ever be another one...(unless you pay me)", "P.S. don't ask me for a version 2.0 because there will never ever be another one...(unless you pay me)", "P.S. don't ask me for a version 2.0 because there will never ever be another one...(unless you pay me)", "P.S. don't ask me for a version 2.0 because there will never ever be another one...(unless you pay me)", "I don't know why im still writing more stuff here its literally 5:37 am...", "I don't know why im still writing more stuff here its literally 5:37 am...", "I don't know why im still writing more stuff here its literally 5:37 am...", "I don't know why im still writing more stuff here its literally 5:37 am...", "I don't know why im still writing more stuff here its literally 5:37 am...", "I don't know why im still writing more stuff here its literally 5:37 am...", "I don't know why im still writing more stuff here its literally 5:37 am...", "I don't know why im still writing more stuff here its literally 5:37 am...", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "If you don't give us extra points and classify this as a game thats 'actually good' ill hack your toaster and make it burn the toast every time", "Okay i'mma go to sleep now bai bai","Okay i'mma go to sleep now bai bai","Okay i'mma go to sleep now bai bai","Okay i'mma go to sleep now bai bai", "Other songs/sounds used: Kalinka, Undertale Sans & Undyne Talking", "Other songs/sounds used: Kalinka, Undertale Sans & Undyne Talking", "Other songs/sounds used: Kalinka, Undertale Sans & Undyne Talking", "Other songs/sounds used: Kalinka, Undertale Sans & Undyne Talking", "The End", "The End", "The End", "The End", "The End", "The End", "The End", "Thank you.", "Thank you.", "Thank you. :)", "Thank you. :)", "Thank you. :)", "Thank you. :)"],
+				  typeSpeed: 20
+				};
+
+				typed = new Typed('#dialogue', options);
+				document.querySelectorAll(".typed-cursor")[0].style.display = "none";
+
+				document.querySelectorAll(".interactionContainer")[0].style.height = "460px";
+				document.querySelectorAll(".interactionContainer")[0].style.color = "#fff";
+				document.querySelectorAll(".interactionContainer")[0].style.backgroundColor = "#000";
+				document.querySelectorAll(".interactionContainer")[0].style.textAlign = "center";
+
+				var bowie = new Audio();
+				bowie.src = "../resources/queen_bitch.mp3";
+
+				bowie.play();
+
+			}
+		}
+	</script>
+	<div>
+		<h1 id="no" href=""></h1></div>
+	<div id="container" class="interactionContainer" onmousedown="bruh()">
+		<a id="dialogue">Click to start playback.</a>
+	</div>
+</body>
+</html>
